@@ -26,9 +26,20 @@ git --work-tree=/var/www/html/BM/<ambiente> --git-dir=/var/www/html/BM/repo/<amb
 
 ## 2. How to install (DEV)
 
+> install dependences
+
+```
+cd /var/www/html/BM/repo/
+sudo git init --bare <ambiente>.git
+cd <ambiente>.git/hooks/
+sudo touch post-receive
+sudo nano post-receive
+```
+
 ## 3. Technologies used for development
 
 BACKEND:
+*  Maven
 *  Spring boot
 *  Spring tool suite (for VSCODE)
 *  Spring Initializr (for create a spring project)
