@@ -1,6 +1,8 @@
 # EmployeeCRUD
 EmployeeCRUD is a simple system for create, read, update and delete employees
 
-## Requirements
+## 1. How to install (PROD)
 
-## For install
+## 2. How to install (DEV)
+
+## 3. Technologies used for development
