@@ -35,3 +35,8 @@ BACKEND:
 *  Postman (for test API)
 *  MySQL Community Server
 *  Mocky.io https://www.mocky.io (For make API returns and implement front-end)
+
+## 4. Next Steps
+
+BACKEND
+*  Use of the HATEOAS
