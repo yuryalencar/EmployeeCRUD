@@ -29,17 +29,14 @@ git --work-tree=/var/www/html/BM/<ambiente> --git-dir=/var/www/html/BM/repo/<amb
 > install dependences
 
 ```
-cd /var/www/html/BM/repo/
-sudo git init --bare <ambiente>.git
-cd <ambiente>.git/hooks/
-sudo touch post-receive
-sudo nano post-receive
+mvn install
 ```
 
 ## 3. Technologies used for development
 
 BACKEND:
 *  Maven
+*  FlywayDb (https://www.flywaydb.org)
 *  Spring boot
 *  Spring tool suite (for VSCODE)
 *  Spring Initializr (for create a spring project)
