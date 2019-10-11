@@ -2,6 +2,7 @@ package com.yuryalencar.employeeapi.resource;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,8 +46,9 @@ public class EmployeeResource {
     }
 
     @GetMapping("/{id}")
-    public Employee searchEmployeeById(@PathVariable Long id){
-        return employeeRepository.findById(id).orElse(null);
+    public ResponseEntity<?> searchEmployeeById(@PathVariable Long id){
+        Optional employee = employeeRepository.findById(id);
+        return employee.isPresent() ? ResponseEntity.ok(employee.get()) : ResponseEntity.notFound().build();
     }
 
 }
