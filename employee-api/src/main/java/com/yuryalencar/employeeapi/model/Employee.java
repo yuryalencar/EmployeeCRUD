@@ -8,7 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
 /**
  * Employee Created by: Yury Alencar Lima
  */
@@ -21,12 +23,20 @@ public class Employee {
     private Long id;
 
     @NotNull
+    @Size(min=2, max=30)
     private String name;
+
     @NotNull
+    @Size(min=2, max=50)
     private String lastName;
+    
     @NotNull
+    @Email
     private String email;
+    
     @NotNull
+    @Size(min=11, max=11)
+    @Pattern(regexp="^\\d+$")
     private String nisPis;
 
     public Employee() {
