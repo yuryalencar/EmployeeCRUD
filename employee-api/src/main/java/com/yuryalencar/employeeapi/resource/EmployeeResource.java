@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import com.yuryalencar.employeeapi.model.Employee;
 import com.yuryalencar.employeeapi.repository.EmployeeRepository;
@@ -34,7 +35,7 @@ public class EmployeeResource {
     }
 
     @PostMapping
-    public ResponseEntity<Employee> create(@RequestBody Employee employee, HttpServletResponse response) {
+    public ResponseEntity<Employee> create(@Valid @RequestBody Employee employee, HttpServletResponse response) {
         Employee employeeCreated = employeeRepository.save(employee);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(employeeCreated.getId()).toUri();

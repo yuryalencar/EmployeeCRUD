@@ -7,10 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
- * Employee
- * Created by: Yury Alencar Lima
+ * Employee Created by: Yury Alencar Lima
  */
 @Entity
 @Table(name = "employee")
@@ -19,9 +19,14 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
     private String name;
+    @NotNull
     private String lastName;
+    @NotNull
     private String email;
+    @NotNull
     private String nisPis;
 
     public Employee() {
@@ -93,14 +98,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", nisPis='" + getNisPis() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", name='" + getName() + "'" + ", lastName='" + getLastName() + "'"
+                + ", email='" + getEmail() + "'" + ", nisPis='" + getNisPis() + "'" + "}";
     }
 
-    
 }
