@@ -8,15 +8,19 @@ import javax.validation.Valid;
 import com.yuryalencar.employeeapi.event.ResourceCreatedEvent;
 import com.yuryalencar.employeeapi.model.Employee;
 import com.yuryalencar.employeeapi.repository.EmployeeRepository;
+import com.yuryalencar.employeeapi.service.EmployeeService;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -33,7 +37,10 @@ public class EmployeeResource {
     private EmployeeRepository employeeRepository;
 
     @Autowired
-	private ApplicationEventPublisher publisher;
+    private ApplicationEventPublisher publisher;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping
     public List<Employee> list() {
@@ -61,5 +68,12 @@ public class EmployeeResource {
         employeeRepository.deleteById(id);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployeeById(@PathVariable Long id, @Valid @RequestBody Employee employee) {
+
+        Employee employeeUpdated = employeeService.update(id, employee);
+    
+        return ResponseEntity.ok(employeeUpdated);
+    }
 
 }
