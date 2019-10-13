@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -44,6 +47,18 @@ public class EmployeeExceptionHandler extends ResponseEntityExceptionHandler {
 
         List<Error> errorList = createErrorsList(ex.getBindingResult());
         return handleExceptionInternal(ex, errorList, headers, status, request);
+    }
+
+    @ExceptionHandler({ EmptyResultDataAccessException.class })
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,
+            WebRequest request) {
+
+        String userMessage = messageSource.getMessage("resource.notfound", null, LocaleContextHolder.getLocale());
+        String developerMessage = ex.toString();
+        List<Error> errorList = Arrays.asList(new Error(userMessage, developerMessage));
+
+        return handleExceptionInternal(ex, errorList, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     private List<Error> createErrorsList(BindingResult bindingResult) {
