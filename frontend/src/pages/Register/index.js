@@ -11,14 +11,18 @@ export default function Register({ history }) {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const response = await api.post('/employees', {
-            name,
-            lastName,
-            email,
-            nisPis
-        });
+        try {
+            await api.post('/employees', {
+                name,
+                lastName,
+                email,
+                nisPis
+            });
+            history.push('/');
 
-        history.push('/');
+        } catch (e) {
+            alert('Ocorreu um erro no cadastro verifique os dados informados e tente novamente !');
+        }
     }
 
     return (
@@ -28,7 +32,7 @@ export default function Register({ history }) {
             </p>
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">NOME *</label>
+                <label htmlFor="name">NOME * (Entre 2 e 30 caracteres)</label>
                 <input
                     id="name"
                     name="name"
@@ -39,7 +43,7 @@ export default function Register({ history }) {
                     onChange={event => setName(event.target.value)}
                 />
 
-                <label htmlFor="lastName">SOBRENOME *</label>
+                <label htmlFor="lastName">SOBRENOME * (Entre 2 e 50 caracteres)</label>
                 <input
                     id="lastName"
                     name="lastName"
@@ -61,7 +65,7 @@ export default function Register({ history }) {
                     onChange={event => setEmail(event.target.value)}
                 />
 
-                <label htmlFor="nisPis">NIS/PIS *</label>
+                <label htmlFor="nisPis">NIS/PIS * (11 dígitos)</label>
                 <input
                     id="nisPis"
                     name="nisPis"

@@ -3,7 +3,7 @@ import './App.css';
 
 import Routes from './routes';
 
-import logo from './assets/logo.svg';
+import logo from './assets/logo.png';
 
 function App() {
 

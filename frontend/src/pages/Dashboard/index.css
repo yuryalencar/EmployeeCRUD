@@ -1,4 +1,40 @@
-.content button.btn-edit {
+button.btn-edit {
+    border: 0;
+    border-radius: 2px;
+    /* width: 100%; */
+    height: 42px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #2082af;
+    color: #FFF;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+button.btn-edit:hover {
+    background: #196588;
+}
+
+button.btn-delete:hover {
+    background: #b43b3b;
+}
+
+button.btn-delete {
+    border: 0;
+    border-radius: 2px;
+    /* width: 100%; */
+    height: 42px;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #cf4848;
+    color: #FFF;
+    cursor: pointer;
+}
+
+
+.content button.btn-new-employee {
     border: 0;
     border-radius: 2px;
     width: 100%;
@@ -9,4 +45,10 @@
     background: #2082af;
     color: #FFF;
     cursor: pointer;
+    margin-bottom: 10px;
+}
+
+
+.content button.example {
+    flex-direction: row;
 }
