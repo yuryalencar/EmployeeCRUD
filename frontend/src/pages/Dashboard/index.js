@@ -5,7 +5,7 @@ import './index.css';
 
 import api from '../../services/api';
 
-export default function Dashboard() {
+export default function Dashboard({ history }) {
 
     const [employees, setEmployees] = useState([]);
 
@@ -13,14 +13,27 @@ export default function Dashboard() {
         async function loadEmployees() {
             const response = await api.get('/employees');
             setEmployees(response.data);
-            console.log(response.data);
         }
 
         loadEmployees();
-    }, [])
+    }, [employees])
 
-    async function deleteEmployee(employeeId){
-        console.log(employeeId);
+    async function handleSubmitToDelete(employeeId) {
+        async function deleteEmployee() {
+            var userChoice = window.confirm("Deseja realmente deletar este usuário ?");
+            if (userChoice) {
+                const response = await api.delete('/employees/' + employeeId);
+            
+                if(response.status === 204){
+                    const response = await api.get('/employees');
+                    setEmployees(response.data);
+                } else {
+                    alert("Opa tivemos nesta exclusão problema tente novamente.");
+                }
+            }
+        }
+
+        deleteEmployee();
     }
 
     return (
@@ -48,7 +61,7 @@ export default function Dashboard() {
                             <td>{employee.nisPis}</td>
                             <td>
                                 <button type="button" className="btn btn-edit">Editar</button>
-                                <button type="button" onClick={deleteEmployee(employee.id)} className="btn">Excluir</button>
+                                <button type="button" onClick={() => handleSubmitToDelete(employee.id)} className="btn">Excluir</button>
                             </td>
                         </tr>
                     ))}
