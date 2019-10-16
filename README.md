@@ -1,35 +1,20 @@
 # EmployeeCRUD
 EmployeeCRUD is a simple system for create, read, update and delete employees
 
-## 1. How to install (PROD)
+## 1. How to install: Frontend
 
-> create a git empty repo
-
-```
-cd /var/www/html/BM/repo/
-sudo git init --bare <ambiente>.git
-cd <ambiente>.git/hooks/
-sudo touch post-receive
-sudo nano post-receive
-```
-
-> Ok, puts this content in the post-receive file:
+> For details
 
 ```
-#!/bin/sh
-git --work-tree=/var/www/html/BM/<ambiente> --git-dir=/var/www/html/BM/repo/<ambiente>.git checkout -f
+https://blog.caelum.com.br/como-preparar-uma-aplicacao-react-para-o-deploy/
 ```
 
-> Grants permission now:
+## 2. How to install: Backend
 
-
-
-## 2. How to install (DEV)
-
-> install dependences
+> For details
 
 ```
-mvn install
+https://medium.com/swlh/deploying-spring-boot-applications-15e14db25ff0
 ```
 
 ## 3. Technologies used for development
@@ -43,6 +28,15 @@ BACKEND:
 *  Postman (for test API)
 *  MySQL Community Server
 *  Mocky.io https://www.mocky.io (For make API returns and implement front-end)
+
+FRONTEND:
+*  Yarn
+*  "axios": "^0.19.0",
+*  "react": "^16.10.2",
+*  "react-dom": "^16.10.2",
+*  "react-router-dom": "^5.1.2",
+*  "react-scripts": "3.2.0",
+*  "react-super-responsive-table": "^5.0.4"
 
 ## 4. Next Steps
 
