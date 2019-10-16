@@ -23,7 +23,7 @@ body, input, button {
 
 .container {
   margin: 70px auto 0;
-  max-width: 700px;
+  max-width: 800px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -73,11 +73,11 @@ body, input, button {
   padding: 0 20px;
   font-size: 16px;
   font-weight: bold;
-  background: #2082af;
+  background: #09c0ec;
   color: #FFF;
   cursor: pointer;
 }
 
 .content button.btn:hover {
-  background: #196588;
+  background: #08aed8;
 }
