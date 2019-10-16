@@ -16,6 +16,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,11 +43,13 @@ public class EmployeeResource {
     @Autowired
     private EmployeeService employeeService;
 
+    @CrossOrigin
     @GetMapping
     public List<Employee> list() {
         return employeeRepository.findAll();
     }
 
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<Employee> create(@Valid @RequestBody Employee employee, HttpServletResponse response) {
         Employee employeeCreated = employeeRepository.save(employee);
@@ -56,18 +59,21 @@ public class EmployeeResource {
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeCreated);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<Employee> searchEmployeeById(@PathVariable Long id) {
         Employee employee = employeeRepository.findById(id).orElse(null);
         return employee != null ? ResponseEntity.ok(employee) : ResponseEntity.notFound().build();
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEmployeeById(@PathVariable Long id) {
         employeeRepository.deleteById(id);
     }
 
+    @CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployeeById(@PathVariable Long id, @Valid @RequestBody Employee employee) {
 
