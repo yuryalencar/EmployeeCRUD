@@ -3,13 +3,16 @@ EmployeeCRUD is a simple system for create, read, update and delete employees
 
 ## 1. How to install: Frontend
 
-> For details
+> Configure link to backend
 
+> For details
 ```
 https://blog.caelum.com.br/como-preparar-uma-aplicacao-react-para-o-deploy/
 ```
 
 ## 2. How to install: Backend
+
+> Configure data for DB in application.properties
 
 > For details
 
